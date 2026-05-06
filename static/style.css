@@ -776,6 +776,87 @@ tbody tr:hover {
   }
 }
 
+@media (max-width: 700px) {
+  .content {
+    padding: 1rem 0.85rem 1.1rem;
+  }
+
+  .sidebar {
+    padding: 0.9rem;
+  }
+
+  .sidebar nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+
+  .sidebar a {
+    padding: 0.55rem 0.55rem;
+    font-size: 0.88rem;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+  }
+
+  .hero {
+    padding: 1.2rem;
+    gap: 0.85rem;
+  }
+
+  .hero-visual {
+    min-height: 230px;
+  }
+
+  .layer-card {
+    width: 178px;
+    padding: 0.7rem;
+  }
+
+  .layer-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .layer-top {
+    right: 0;
+    top: 8px;
+  }
+
+  .layer-mid {
+    left: 0;
+    top: 68px;
+  }
+
+  .layer-back {
+    right: 8px;
+    bottom: 4px;
+  }
+
+  .prestige-car img {
+    height: 170px;
+  }
+
+  .card {
+    padding: 0.9rem;
+  }
+
+  th,
+  td {
+    padding: 0.55rem;
+    font-size: 0.85rem;
+  }
+
+  .chip {
+    font-size: 0.72rem;
+    padding: 0.28rem 0.55rem;
+  }
+}
+
 /* Prestige theme overrides */
 :root {
   --bg: #070912;

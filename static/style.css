@@ -775,3 +775,186 @@ tbody tr:hover {
     min-height: 300px;
   }
 }
+
+/* Prestige theme overrides */
+:root {
+  --bg: #070912;
+  --text: #f3f4f6;
+  --muted: #a7b4d7;
+  --border: #2b3760;
+}
+
+body {
+  background: radial-gradient(circle at 82% 12%, rgba(215, 13, 148, 0.23), transparent 35%),
+    radial-gradient(circle at 10% 80%, rgba(38, 120, 255, 0.22), transparent 32%),
+    linear-gradient(125deg, #05060f 0%, #090d1c 48%, #040510 100%);
+}
+
+.grid-overlay {
+  opacity: 0.55;
+}
+
+h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 3rem;
+  line-height: 1;
+  letter-spacing: 0.2px;
+}
+
+h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  line-height: 1.05;
+}
+
+.subtitle {
+  max-width: 68ch;
+}
+
+.shell {
+  grid-template-columns: 280px 1fr;
+}
+
+.sidebar {
+  background: linear-gradient(180deg, rgba(8, 11, 23, 0.92), rgba(8, 10, 22, 0.82));
+  border-right: 1px solid rgba(120, 144, 220, 0.28);
+  box-shadow: 20px 0 45px rgba(0, 0, 0, 0.26);
+}
+
+.brand-mark {
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(107, 82, 255, 0.45);
+}
+
+.sidebar a {
+  border-radius: 14px;
+  font-weight: 500;
+}
+
+.sidebar a.active {
+  background: linear-gradient(120deg, rgba(154, 74, 255, 0.36), rgba(61, 116, 255, 0.3));
+  border-color: rgba(155, 188, 255, 0.46);
+}
+
+.topbar {
+  border-radius: 20px;
+  border: 1px solid rgba(124, 145, 224, 0.32);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.42);
+}
+
+.chip {
+  background: linear-gradient(110deg, rgba(27, 39, 78, 0.8), rgba(83, 36, 118, 0.62));
+  border-color: rgba(162, 187, 255, 0.4);
+}
+
+.hero {
+  border-radius: 24px;
+  border: 1px solid rgba(130, 153, 239, 0.38);
+  background: linear-gradient(125deg, rgba(16, 25, 52, 0.9) 0%, rgba(31, 14, 55, 0.87) 100%);
+}
+
+.hero::after {
+  background: linear-gradient(115deg, transparent 25%, rgba(255, 255, 255, 0.12), transparent 75%);
+}
+
+.hero .btn.primary {
+  padding: 0.82rem 1.3rem;
+  border-radius: 14px;
+}
+
+.layer-card {
+  border-radius: 18px;
+  border-color: rgba(160, 184, 255, 0.35);
+  background: linear-gradient(155deg, rgba(30, 46, 88, 0.88), rgba(43, 19, 67, 0.8));
+}
+
+.card {
+  border-radius: 20px;
+  border: 1px solid rgba(115, 134, 199, 0.32);
+  background: linear-gradient(140deg, rgba(13, 19, 37, 0.78), rgba(20, 14, 38, 0.62));
+}
+
+.stat h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.15rem;
+}
+
+table th {
+  background: linear-gradient(90deg, rgba(37, 52, 95, 0.52), rgba(52, 20, 74, 0.46));
+}
+
+.showcase-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1rem;
+}
+
+.prestige-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.prestige-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(245, 57, 182, 0.24), transparent 42%);
+  pointer-events: none;
+}
+
+.prestige-panel h2 {
+  margin-bottom: 0.4rem;
+}
+
+.laser-lines {
+  margin-top: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.laser-lines span {
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(124, 58, 237, 0.2), #3b82f6, #ec4899, rgba(236, 72, 153, 0.1));
+  filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.6));
+}
+
+.prestige-metrics {
+  display: grid;
+  gap: 0.5rem;
+  align-content: center;
+}
+
+.prestige-metrics h3 {
+  font-size: 2rem;
+  letter-spacing: 0.2rem;
+}
+
+.pulse-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 0 rgba(34, 211, 238, 0.5);
+  animation: pulsePing 1.8s infinite;
+}
+
+@keyframes pulsePing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 18px rgba(34, 211, 238, 0);
+  }
+}
+
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}

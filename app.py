@@ -213,9 +213,6 @@ def seed_demo_data():
     db.close()
 
 
-seed_demo_data()
-
-
 def to_skill_set(skills_text):
     return {token.strip().lower() for token in skills_text.split(",") if token.strip()}
 
@@ -239,6 +236,9 @@ def calculate_match_score(candidate, job):
     score = round(skill_score + exp_score, 2)
     status = "Shortlisted" if score >= 60 else "Rejected"
     return score, status
+
+
+seed_demo_data()
 
 
 @app.route("/")

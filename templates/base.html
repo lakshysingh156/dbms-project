@@ -26,16 +26,27 @@
         </div>
       </div>
       <nav>
-        <a href="{{ url_for('home') }}">Overview</a>
-        <a href="{{ url_for('dashboard') }}">Dashboard</a>
-        <a href="{{ url_for('candidates') }}">Candidates</a>
-        <a href="{{ url_for('jobs') }}">Job Postings</a>
-        <a href="{{ url_for('applications') }}">Applications</a>
-        <a href="{{ url_for('reports') }}">Reports</a>
+        <a class="{% if request.path == '/' %}active{% endif %}" href="{{ url_for('home') }}">Overview</a>
+        <a class="{% if request.path == '/dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a class="{% if request.path == '/candidates' %}active{% endif %}" href="{{ url_for('candidates') }}">Candidates</a>
+        <a class="{% if request.path == '/jobs' %}active{% endif %}" href="{{ url_for('jobs') }}">Job Postings</a>
+        <a class="{% if request.path == '/applications' %}active{% endif %}" href="{{ url_for('applications') }}">Applications</a>
+        <a class="{% if request.path == '/reports' %}active{% endif %}" href="{{ url_for('reports') }}">Reports</a>
       </nav>
     </aside>
 
     <main class="content">
+      <header class="topbar card">
+        <div>
+          <p class="eyebrow">Production Demo Build</p>
+          <h2>ResumeIQ Pro Control Panel</h2>
+        </div>
+        <div class="topbar-badges">
+          <span class="chip">3D UI</span>
+          <span class="chip">Auto Shortlisting</span>
+          <span class="chip">Live Deployment Ready</span>
+        </div>
+      </header>
       {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
           <div class="alerts">

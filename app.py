@@ -71,6 +71,9 @@ def init_db():
     db.close()
 
 
+init_db()
+
+
 def to_skill_set(skills_text):
     return {token.strip().lower() for token in skills_text.split(",") if token.strip()}
 
@@ -278,5 +281,4 @@ def reports():
 
 
 if __name__ == "__main__":
-    init_db()
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

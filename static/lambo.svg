@@ -1,0 +1,48 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </linearGradient>
+    <linearGradient id="car" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#111111"/>
+      <stop offset="55%" stop-color="#222222"/>
+      <stop offset="100%" stop-color="#0b0b0b"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2b2b2b"/>
+      <stop offset="100%" stop-color="#0f0f0f"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="700" fill="url(#bg)"/>
+  <rect y="500" width="1200" height="200" fill="#080808"/>
+
+  <path d="M130 455 C220 390 325 348 460 335 L670 315 C770 308 860 332 930 383 L1030 452 L1110 453
+           C1128 453 1145 465 1145 487 L1145 516 L63 516 L68 484 C70 469 83 455 98 455 Z"
+        fill="url(#car)" stroke="#2f2f2f" stroke-width="3"/>
+
+  <path d="M452 340 L676 321 C744 316 806 339 858 375 L736 378 C648 381 560 384 473 392 Z"
+        fill="url(#glass)" stroke="#343434" stroke-width="2"/>
+
+  <path d="M885 415 L977 414 C996 414 1013 427 1017 446 L1019 459 L882 460 Z"
+        fill="#121212" stroke="#303030" stroke-width="2"/>
+
+  <path d="M119 496 L1140 496" stroke="#3c3c3c" stroke-width="2"/>
+  <path d="M224 448 L320 448" stroke="#8f101c" stroke-width="7" filter="url(#glow)"/>
+  <path d="M965 444 L1042 444" stroke="#8f101c" stroke-width="7" filter="url(#glow)"/>
+
+  <circle cx="330" cy="516" r="66" fill="#0b0b0b" stroke="#2f2f2f" stroke-width="7"/>
+  <circle cx="330" cy="516" r="30" fill="#1f1f1f"/>
+  <circle cx="891" cy="516" r="66" fill="#0b0b0b" stroke="#2f2f2f" stroke-width="7"/>
+  <circle cx="891" cy="516" r="30" fill="#1f1f1f"/>
+
+  <rect x="420" y="430" width="105" height="8" rx="4" fill="#9f1b28"/>
+  <rect x="540" y="430" width="105" height="8" rx="4" fill="#9f1b28"/>
+</svg>

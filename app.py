@@ -74,6 +74,148 @@ def init_db():
 init_db()
 
 
+def seed_demo_data():
+    db = sqlite3.connect(DB_PATH)
+    db.row_factory = sqlite3.Row
+    now = datetime.utcnow().isoformat()
+
+    candidate_count = db.execute("SELECT COUNT(*) AS total FROM candidates").fetchone()["total"]
+    job_count = db.execute("SELECT COUNT(*) AS total FROM jobs").fetchone()["total"]
+    app_count = db.execute("SELECT COUNT(*) AS total FROM applications").fetchone()["total"]
+
+    if candidate_count == 0:
+        db.executemany(
+            """
+            INSERT INTO candidates (full_name, email, phone, skills, experience_years, education, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            [
+                (
+                    "Aarav Sharma",
+                    "aarav.sharma@email.com",
+                    "9876543210",
+                    "python, sql, flask, api",
+                    2.5,
+                    "B.Tech CSE",
+                    now,
+                ),
+                (
+                    "Priya Mehta",
+                    "priya.mehta@email.com",
+                    "9811122233",
+                    "java, spring, mysql, rest",
+                    3.0,
+                    "B.Tech IT",
+                    now,
+                ),
+                (
+                    "Rohan Singh",
+                    "rohan.singh@email.com",
+                    "9898989898",
+                    "react, nodejs, mongodb, javascript",
+                    1.8,
+                    "BCA",
+                    now,
+                ),
+                (
+                    "Neha Kapoor",
+                    "neha.kapoor@email.com",
+                    "9765432101",
+                    "python, pandas, sql, tableau",
+                    2.2,
+                    "MCA",
+                    now,
+                ),
+                (
+                    "Kunal Verma",
+                    "kunal.verma@email.com",
+                    "9788887711",
+                    "django, postgresql, docker, linux",
+                    3.4,
+                    "B.Tech CSE",
+                    now,
+                ),
+            ],
+        )
+
+    if job_count == 0:
+        db.executemany(
+            """
+            INSERT INTO jobs (title, department, required_skills, min_experience, description, created_at)
+            VALUES (?, ?, ?, ?, ?, ?)
+            """,
+            [
+                (
+                    "Backend Developer",
+                    "Engineering",
+                    "python, sql, flask, api",
+                    2.0,
+                    "Develop backend services and optimize SQL queries.",
+                    now,
+                ),
+                (
+                    "Data Analyst",
+                    "Analytics",
+                    "sql, python, tableau, excel",
+                    1.5,
+                    "Analyze recruitment and business metrics.",
+                    now,
+                ),
+                (
+                    "Full Stack Developer",
+                    "Product",
+                    "react, nodejs, javascript, sql",
+                    2.0,
+                    "Build scalable frontend and backend modules.",
+                    now,
+                ),
+                (
+                    "Software Engineer",
+                    "Platform",
+                    "java, mysql, rest, git",
+                    2.5,
+                    "Build robust backend components and APIs.",
+                    now,
+                ),
+                (
+                    "Python Developer",
+                    "Automation",
+                    "python, django, postgresql, docker",
+                    2.0,
+                    "Create automation tools and internal systems.",
+                    now,
+                ),
+            ],
+        )
+
+    if app_count == 0:
+        candidate_rows = db.execute("SELECT id, skills, experience_years FROM candidates ORDER BY id LIMIT 5").fetchall()
+        job_rows = db.execute("SELECT id, required_skills, min_experience FROM jobs ORDER BY id LIMIT 5").fetchall()
+        for candidate, job in zip(candidate_rows, job_rows):
+            score, status = calculate_match_score(candidate, job)
+            db.execute(
+                """
+                INSERT INTO applications (candidate_id, job_id, resume_url, match_score, status, reviewer_notes, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    candidate["id"],
+                    job["id"],
+                    "",
+                    score,
+                    status,
+                    "Auto-seeded demo application.",
+                    now,
+                ),
+            )
+
+    db.commit()
+    db.close()
+
+
+seed_demo_data()
+
+
 def to_skill_set(skills_text):
     return {token.strip().lower() for token in skills_text.split(",") if token.strip()}
 

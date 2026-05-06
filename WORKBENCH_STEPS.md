@@ -7,24 +7,25 @@ Use this if your teacher asks for SQL Workbench demo.
 3. Go to **File -> Open SQL Script**.
 4. Open `sql/workbench_setup.sql`.
 5. Click the lightning bolt (**Execute**) to run all statements.
-6. In left **SCHEMAS**, refresh and open `resume_iq_pro`.
-7. Right click table `applications` -> **Select Rows - Limit 1000**.
+6. In left **SCHEMAS**, refresh and open `resume_shortlisting_db`.
+7. Right click table `application` -> **Select Rows - Limit 1000**.
 
 ## Useful demo queries
 
 ```sql
-USE resume_iq_pro;
+USE resume_shortlisting_db;
 
-SELECT c.full_name, j.title, a.match_score, a.status
-FROM applications a
-JOIN candidates c ON c.id = a.candidate_id
-JOIN jobs j ON j.id = a.job_id
-ORDER BY a.match_score DESC;
+SELECT c.name, j.job_title, a.status, s.score, s.decision
+FROM candidate c
+JOIN application a ON c.candidate_id = a.candidate_id
+JOIN job j ON a.job_id = j.job_id
+LEFT JOIN shortlist s ON a.application_id = s.application_id
+ORDER BY s.score DESC;
 ```
 
 ```sql
-SELECT j.department, COUNT(*) AS total_apps, ROUND(AVG(a.match_score),2) AS avg_score
-FROM applications a
-JOIN jobs j ON j.id = a.job_id
-GROUP BY j.department;
+SELECT job_id, COUNT(application_id) AS total_applications
+FROM application
+GROUP BY job_id
+HAVING COUNT(application_id) >= 1;
 ```

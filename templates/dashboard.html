@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Hiring Command Center</h1>
+<p class="subtitle">Monitor application flow, shortlist quality, and candidate ranking.</p>
+
+<section class="cards-grid">
+  <article class="card stat">
+    <p>Total Applications</p>
+    <h3>{{ metrics.total_apps or 0 }}</h3>
+  </article>
+  <article class="card stat">
+    <p>Shortlisted</p>
+    <h3>{{ metrics.shortlisted or 0 }}</h3>
+  </article>
+  <article class="card stat">
+    <p>Rejected</p>
+    <h3>{{ metrics.rejected or 0 }}</h3>
+  </article>
+  <article class="card stat">
+    <p>Average Match Score</p>
+    <h3>{{ metrics.avg_score or 0 }}</h3>
+  </article>
+</section>
+
+<section class="card">
+  <div class="section-header">
+    <h2>Top Ranked Applications</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Candidate</th>
+          <th>Job Role</th>
+          <th>Score</th>
+          <th>Status</th>
+          <th>Submitted</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in leaderboard %}
+        <tr>
+          <td>{{ row.full_name }}</td>
+          <td>{{ row.title }}</td>
+          <td>{{ row.match_score }}</td>
+          <td><span class="badge {{ row.status|lower|replace(' ', '-') }}">{{ row.status }}</span></td>
+          <td>{{ row.created_at[:10] }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5">No applications yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

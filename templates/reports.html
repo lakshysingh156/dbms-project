@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Recruitment Reports</h1>
+<p class="subtitle">Performance insights across departments and top candidates.</p>
+
+<section class="cards-grid reports-grid">
+  <article class="card">
+    <h2>Department-wise Performance</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Department</th>
+            <th>Total Applications</th>
+            <th>Average Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in by_department %}
+          <tr>
+            <td>{{ row.department }}</td>
+            <td>{{ row.total }}</td>
+            <td>{{ row.avg_score or 0 }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="3">No records available.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </article>
+
+  <article class="card">
+    <h2>Top Candidate Profiles</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Candidate</th>
+            <th>Email</th>
+            <th>Best Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in top_candidates %}
+          <tr>
+            <td>{{ row.full_name }}</td>
+            <td>{{ row.email }}</td>
+            <td>{{ row.best_score }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="3">No candidate ranking yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>
+{% endblock %}

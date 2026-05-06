@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Recruitment Intelligence Platform</p>
+    <h1>Automated Resume Shortlisting System</h1>
+    <p class="subtitle">
+      A professional end-to-end web system inspired by your DBMS report, designed for accurate,
+      consistent, and data-driven hiring decisions.
+    </p>
+    <a class="btn primary" href="{{ url_for('dashboard') }}">Open Dashboard</a>
+  </div>
+  <div class="hero-visual">
+    <div class="layer-card layer-top">
+      <p>AI Match Score</p>
+      <h3>92.4</h3>
+      <small>Top candidate fit</small>
+    </div>
+    <div class="layer-card layer-mid">
+      <p>Shortlisted Today</p>
+      <h3>{{ counts.shortlisted }}</h3>
+      <small>Auto-evaluated profiles</small>
+    </div>
+    <div class="layer-card layer-back">
+      <p>Live Hiring Pipeline</p>
+      <h3>{{ counts.applications }}</h3>
+      <small>Applications tracked</small>
+    </div>
+  </div>
+</section>
+
+<section class="cards-grid">
+  <article class="card stat">
+    <p>Total Candidates</p>
+    <h3>{{ counts.candidates }}</h3>
+  </article>
+  <article class="card stat">
+    <p>Active Jobs</p>
+    <h3>{{ counts.jobs }}</h3>
+  </article>
+  <article class="card stat">
+    <p>Applications</p>
+    <h3>{{ counts.applications }}</h3>
+  </article>
+  <article class="card stat">
+    <p>Shortlisted</p>
+    <h3>{{ counts.shortlisted }}</h3>
+  </article>
+</section>
+{% endblock %}

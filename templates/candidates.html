@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-header">
+  <h1>Candidates</h1>
+</div>
+
+<section class="card form-card">
+  <h2>Add Candidate Profile</h2>
+  <form method="post" class="form-grid">
+    <input name="full_name" placeholder="Full Name" required>
+    <input name="email" type="email" placeholder="Email" required>
+    <input name="phone" placeholder="Phone Number">
+    <input name="experience_years" type="number" min="0" step="0.5" placeholder="Experience (years)" required>
+    <input name="education" placeholder="Highest Education">
+    <input name="skills" placeholder="Skills (comma separated)" required>
+    <button type="submit" class="btn primary">Save Candidate</button>
+  </form>
+</section>
+
+<section class="card">
+  <h2>Candidate Directory</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Experience</th>
+          <th>Skills</th>
+          <th>Education</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in candidates %}
+        <tr>
+          <td>{{ row.full_name }}</td>
+          <td>{{ row.email }}</td>
+          <td>{{ row.experience_years }}</td>
+          <td>{{ row.skills }}</td>
+          <td>{{ row.education }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5">No candidate profiles available.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-header">
+  <h1>Applications & Auto-Shortlisting</h1>
+</div>
+
+<section class="card form-card">
+  <h2>Evaluate New Application</h2>
+  <form method="post" class="form-grid">
+    <select name="candidate_id" required>
+      <option value="">Select Candidate</option>
+      {% for row in candidates %}
+      <option value="{{ row.id }}">{{ row.full_name }}</option>
+      {% endfor %}
+    </select>
+    <select name="job_id" required>
+      <option value="">Select Job</option>
+      {% for row in jobs %}
+      <option value="{{ row.id }}">{{ row.title }}</option>
+      {% endfor %}
+    </select>
+    <input name="resume_url" placeholder="Resume Link (optional)">
+    <textarea name="reviewer_notes" placeholder="Reviewer notes"></textarea>
+    <button type="submit" class="btn primary">Run Evaluation</button>
+  </form>
+  <p class="muted">Scoring model: skills fit (70%) + experience fit (30%), shortlist threshold = 60.</p>
+</section>
+
+<section class="card">
+  <h2>Application History</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Candidate</th>
+          <th>Job</th>
+          <th>Score</th>
+          <th>Status</th>
+          <th>Resume</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in applications %}
+        <tr>
+          <td>{{ row.full_name }}</td>
+          <td>{{ row.job_title }}</td>
+          <td>{{ row.match_score }}</td>
+          <td><span class="badge {{ row.status|lower|replace(' ', '-') }}">{{ row.status }}</span></td>
+          <td>
+            {% if row.resume_url %}
+              <a href="{{ row.resume_url }}" target="_blank">Open</a>
+            {% else %}
+              N/A
+            {% endif %}
+          </td>
+          <td>{{ row.reviewer_notes or "—" }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6">No applications submitted yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

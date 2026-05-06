@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section-header">
+  <h1>Job Postings</h1>
+</div>
+
+<section class="card form-card">
+  <h2>Create Job Requirement</h2>
+  <form method="post" class="form-grid">
+    <input name="title" placeholder="Job Title" required>
+    <input name="department" placeholder="Department" required>
+    <input name="required_skills" placeholder="Required Skills (comma separated)" required>
+    <input name="min_experience" type="number" min="0" step="0.5" placeholder="Minimum Experience" required>
+    <textarea name="description" placeholder="Job Description"></textarea>
+    <button type="submit" class="btn primary">Publish Job</button>
+  </form>
+</section>
+
+<section class="card">
+  <h2>Open Roles</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Department</th>
+          <th>Required Skills</th>
+          <th>Min Experience</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in jobs %}
+        <tr>
+          <td>{{ row.title }}</td>
+          <td>{{ row.department }}</td>
+          <td>{{ row.required_skills }}</td>
+          <td>{{ row.min_experience }}</td>
+          <td>{{ row.description }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5">No job postings available.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
